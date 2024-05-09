@@ -1,25 +1,35 @@
+/* Base styles for the landing container */
 .landing-container {
-    height: 120vh;
+    height: 100vh;
     width: 100vw;
     background-image: url('../assets/bookhav.jpg');
     background-size: cover;
     background-position: center;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start; /* Align content to the top */
+    align-items: flex-start; /* Align content to the left */
     color: white;
-    text-align: center;
-    font-family: 'Arial', sans-serif; /* Updated font family */
-    font-size: 24px; /* Updated font size */
-
+    text-align: left;
+    font-family: 'Arial', sans-serif;
+    padding: 20px; /* Add some padding for spacing */
 }
 
+/* Style for the welcome message */
 .welcome-message {
-    margin-top: -50px; /* Adjusted position */
-    font-size: 36px; /* Increased font size for prominence */
+    font-size: 24px;
+    margin-top: 20px; /* Add spacing from the top */
 }
 
+/* Style for the h1 (Welcome to Book Haven) */
+.welcome-message h1 {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 10px; /* Add spacing below the heading */
+}
+
+/* Style for the p (description) */
 .welcome-message p {
-    font-size: 20px; /* Adjusted font size for the paragraph */
+    font-size: 20px;
+    line-height: 1.5; /* Improve readability with proper line height */
 }
