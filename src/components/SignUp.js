@@ -1,34 +1,21 @@
-import React, { useState } from 'react';
-import { registerUser } from '../api/localDataHandler';
+import React from 'react';
+import '../styles/SignUp.css';
 
 const SignUp = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        registerUser(email, password);
-        alert('Registration successful!');
-    };
-
     return (
-        <form onSubmit={handleSubmit}>
-            <input
-                type="email"
-                placeholder="Enter email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-            />
-            <input
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-            />
-            <button type="submit">Sign Up</button>
-        </form>
+        <div className="signup-container">
+            <div className="form-box">
+                <h2>Sign Up</h2>
+                <p>Create your account</p>
+                <form>
+                    <input type="text" placeholder="Username" />
+                    <input type="email" placeholder="Email" />
+                    <input type="password" placeholder="Password" />
+                    <input type="password" placeholder="Confirm Password" />
+                    <button type="submit">Sign Up</button>
+                </form>
+            </div>
+        </div>
     );
 };
 

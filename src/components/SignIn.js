@@ -1,37 +1,19 @@
-import React, { useState } from 'react';
-import { checkCredentials } from '../api/localDataHandler';
+import React from 'react';
+import '../styles/SignIn.css';
 
 const SignIn = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        if (checkCredentials(email, password)) {
-            alert('Login successful!');
-        } else {
-            alert('Invalid credentials!');
-        }
-    };
-
     return (
-        <form onSubmit={handleSubmit}>
-            <input
-                type="email"
-                placeholder="Enter email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-            />
-            <input
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-            />
-            <button type="submit">Sign In</button>
-        </form>
+        <div className="signin-container">
+            <div className="form-box">
+                <h2>Welcome Back</h2>
+                <p>Enter your credentials to login</p>
+                <form>
+                    <input type="text" placeholder="Username" />
+                    <input type="password" placeholder="Password" />
+                    <button type="submit">Login</button>
+                </form>
+            </div>
+        </div>
     );
 };
 

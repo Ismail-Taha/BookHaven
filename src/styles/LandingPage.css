@@ -1,5 +1,5 @@
 .landing-container {
-    height: 100vh;
+    height: 120vh;
     width: 100vw;
     background-image: url('../assets/bookhav.jpg');
     background-size: cover;
@@ -10,4 +10,16 @@
     align-items: center;
     color: white;
     text-align: center;
+    font-family: 'Arial', sans-serif; /* Updated font family */
+    font-size: 24px; /* Updated font size */
+
+}
+
+.welcome-message {
+    margin-top: -50px; /* Adjusted position */
+    font-size: 36px; /* Increased font size for prominence */
+}
+
+.welcome-message p {
+    font-size: 20px; /* Adjusted font size for the paragraph */
 }
