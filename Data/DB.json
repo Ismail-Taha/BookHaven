@@ -1,0 +1,48 @@
+{
+    "users": [
+      {
+        "id": 1,
+        "name": "Alice Johnson",
+        "email": "alice@example.com",
+        "password": "$2a$10$...hashedPasswordHere..."
+      },
+      {
+        "id": 2,
+        "name": "Bob Smith",
+        "email": "bob@example.com",
+        "password": "$2a$10$...hashedPasswordHere..."
+      }
+    ],
+    "books": [
+      {
+        "id": 1,
+        "title": "1984",
+        "author": "George Orwell",
+        "year": 1949,
+        "available": true
+      },
+      {
+        "id": 2,
+        "title": "Brave New World",
+        "author": "Aldous Huxley",
+        "year": 1932,
+        "available": true
+      }
+    ],
+    "reviews": [
+      {
+        "id": 1,
+        "bookId": 1,
+        "userId": 1,
+        "comment": "A thought-provoking novel that challenges perceptions of freedom and individuality.",
+        "rating": 5
+      },
+      {
+        "id": 2,
+        "bookId": 2,
+        "userId": 2,
+        "comment": "A deep dive into a dystopian society, both fascinating and disturbing.",
+        "rating": 4
+      }
+    ]
+}
