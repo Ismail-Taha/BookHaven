@@ -1,57 +1,49 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from './AuthContext'; // Ensure this context is created
 import '../styles/SignUp.css';
 
 const SignUp = () => {
-    // State to hold form values
     const [formData, setFormData] = useState({
         username: '',
         email: '',
         password: '',
         confirmPassword: ''
     });
+    const [errors, setErrors] = useState({});
+    const { login } = useContext(AuthContext);
+    const navigate = useNavigate();
 
-    // Function to handle form input changes
-    const handleChange = (event) => {
-        const { name, value } = event.target;
-        setFormData(prevState => ({
-            ...prevState,
-            [name]: value
-        }));
+    const validateForm = () => {
+        let tempErrors = {};
+        tempErrors.username = formData.username ? "" : "Username is required.";
+        tempErrors.email = formData.email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i) ? "" : "Email is not valid.";
+        tempErrors.password = formData.password.length >= 8 ? "" : "Password must be at least 8 characters long.";
+        tempErrors.confirmPassword = formData.password === formData.confirmPassword ? "" : "Passwords do not match.";
+        setErrors(tempErrors);
+        return Object.values(tempErrors).every(x => x === "");
     };
 
-    // Function to handle form submission
     const handleSubmit = async (event) => {
         event.preventDefault();
-        // Add validation for passwords match or any other checks
-
-        if (formData.password !== formData.confirmPassword) {
-            alert("Passwords do not match.");
-            return;
-        }
-
-        // Post data to the backend via API
-        try {
-            const response = await fetch('http://localhost:3000/users', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    name: formData.username,
-                    email: formData.email,
-                    password: formData.password // Assuming your backend does the hashing
-                })
-            });
-            const data = await response.json();
-            if (!response.ok) {
-                throw new Error(data.message || "An error occurred while registering");
+        if (validateForm()) {
+            try {
+                // Simulate API call
+                login({ username: formData.username }); // Update as per your API
+                navigate('/'); // Navigate to home on successful signup
+            } catch (error) {
+                console.error('Signup error:', error);
+                setErrors(prevErrors => ({ ...prevErrors, form: 'Failed to sign up.' }));
             }
-            alert('Registration successful');
-            // Redirect user or clear form
-            setFormData({ username: '', email: '', password: '', confirmPassword: '' });
-        } catch (error) {
-            alert(error.message);
         }
+    };
+
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+        setFormData(prevFormData => ({
+            ...prevFormData,
+            [name]: value
+        }));
     };
 
     return (
@@ -61,10 +53,15 @@ const SignUp = () => {
                 <p>Create your account</p>
                 <form onSubmit={handleSubmit}>
                     <input type="text" name="username" placeholder="Username" value={formData.username} onChange={handleChange} />
+                    {errors.username && <p className="error">{errors.username}</p>}
                     <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} />
+                    {errors.email && <p className="error">{errors.email}</p>}
                     <input type="password" name="password" placeholder="Password" value={formData.password} onChange={handleChange} />
+                    {errors.password && <p className="error">{errors.password}</p>}
                     <input type="password" name="confirmPassword" placeholder="Confirm Password" value={formData.confirmPassword} onChange={handleChange} />
+                    {errors.confirmPassword && <p className="error">{errors.confirmPassword}</p>}
                     <button type="submit">Sign Up</button>
+                    {errors.form && <p className="error">{errors.form}</p>}
                 </form>
             </div>
         </div>

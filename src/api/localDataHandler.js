@@ -1,48 +1,57 @@
-// Base URL for the JSON-Server;
+import { useState } from 'react';
+
 const BASE_URL = 'http://localhost:3000';
 
-export const registerUser = async (email, password) => {
-    try {
-        const response = await fetch(`${BASE_URL}/users`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ email, password })
-        });
-        const data = await response.json();
-        if (!response.ok) {
-            throw new Error(data.message || 'Failed to register');
-        }
-        return { success: true, message: 'User registered successfully.', data };
-    } catch (error) {
-        return { success: false, message: error.message };
-    }
-};
+export const useAuth = () => {
+    const [authToken, setAuthToken] = useState(localStorage.getItem('token') || null);
 
-export const loginUser = async (email, password) => {
-    try {
-        const response = await fetch(`${BASE_URL}/users`);
-        const users = await response.json();
-        const user = users.find(u => u.email === email);
-        if (!user) {
-            return { success: false, message: 'User not found.' };
+    const loginUser = async (email, password) => {
+        try {
+            const response = await fetch(`${BASE_URL}/login`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email, password })
+            });
+            const data = await response.json();
+            if (!response.ok) {
+                throw new Error(data.message || "Login failed");
+            }
+            localStorage.setItem('token', data.token); // Save the token to local storage
+            setAuthToken(data.token);
+            return data;
+        } catch (error) {
+            console.error('Login Error:', error);
+            return { error };
         }
-        // Assuming the server checks the password and returns a flag or token
-        const isValid = await fetch(`${BASE_URL}/login`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ email, password })
-        }).then(res => res.json());
+    };
 
-        if (!isValid) {
-            return { success: false, message: 'Invalid credentials.' };
+    const registerUser = async (username, email, password) => {
+        try {
+            const response = await fetch(`${BASE_URL}/users`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${authToken}` // Include the auth token in the header
+                },
+                body: JSON.stringify({ username, email, password })
+            });
+            const data = await response.json();
+            if (!response.ok) {
+                throw new Error(data.message || "Registration failed");
+            }
+            return data;
+        } catch (error) {
+            console.error('Registration Error:', error);
+            return { error };
         }
+    };
 
-        return { success: true, message: 'Login successful.' };
-    } catch (error) {
-        return { success: false, message: error.message };
-    }
+    const logoutUser = () => {
+        localStorage.removeItem('token'); // Clear the token from local storage
+        setAuthToken(null);
+    };
+
+    return { loginUser, registerUser, logoutUser, authToken };
 };

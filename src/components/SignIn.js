@@ -1,47 +1,45 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from './AuthContext'; // Ensure you have created this context
 import '../styles/SignIn.css';
 
 const SignIn = () => {
-    // State to hold form values
     const [formData, setFormData] = useState({
         username: '',
         password: ''
     });
+    const [errors, setErrors] = useState({});
+    const { login } = useContext(AuthContext);
+    const navigate = useNavigate();
 
-    // Function to handle form input changes
-    const handleChange = (event) => {
-        const { name, value } = event.target;
-        setFormData(prevState => ({
-            ...prevState,
-            [name]: value
-        }));
+    const validateForm = () => {
+        let tempErrors = {};
+        tempErrors.username = formData.username ? "" : "Username is required.";
+        tempErrors.password = formData.password.length >= 8 ? "" : "Password must be at least 8 characters long.";
+        setErrors(tempErrors);
+        return Object.values(tempErrors).every(x => x === "");
     };
 
-    // Function to handle form submission
     const handleSubmit = async (event) => {
         event.preventDefault();
-
-        // Post credentials to the backend via API for validation
-        try {
-            const response = await fetch('http://localhost:3000/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    username: formData.username,
-                    password: formData.password
-                })
-            });
-            const data = await response.json();
-            if (!response.ok) {
-                throw new Error(data.message || "Login failed");
+        if (validateForm()) {
+            try {
+                // Simulate API call
+                login({ username: formData.username }); // Update the login logic as per your API
+                navigate('/'); // Redirect to home on successful login
+            } catch (error) {
+                console.error('Login error:', error);
+                setErrors(prevErrors => ({ ...prevErrors, form: 'Failed to log in.' }));
             }
-            alert('Login successful');
-            // Here you could handle navigation to another route or set user session details
-        } catch (error) {
-            alert(error.message);
         }
+    };
+
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+        setFormData(prevFormData => ({
+            ...prevFormData,
+            [name]: value
+        }));
     };
 
     return (
@@ -51,8 +49,11 @@ const SignIn = () => {
                 <p>Enter your credentials to login</p>
                 <form onSubmit={handleSubmit}>
                     <input type="text" name="username" placeholder="Username" value={formData.username} onChange={handleChange} />
+                    {errors.username && <p className="error">{errors.username}</p>}
                     <input type="password" name="password" placeholder="Password" value={formData.password} onChange={handleChange} />
+                    {errors.password && <p className="error">{errors.password}</p>}
                     <button type="submit">Login</button>
+                    {errors.form && <p className="error">{errors.form}</p>}
                 </form>
             </div>
         </div>
