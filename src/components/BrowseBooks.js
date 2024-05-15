@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '../AuthContext';
+import '../styles/BrowseBooks.css';
+
 
 const BrowseBooks = () => {
     const { user } = useAuth(); // Corrected to useAuth

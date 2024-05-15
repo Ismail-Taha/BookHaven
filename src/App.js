@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { AuthProvider, useAuth } from './AuthContext'; // Make sure this import path is correct
+import { AuthProvider, useAuth } from './AuthContext';
 import NavBar from './components/NavBar';
 import LandingPage from './components/LandingPage';
 import SignIn from './components/SignIn';
@@ -10,8 +10,8 @@ import BrowseBooks from './components/BrowseBooks';
 
 // Protected Route Component
 const ProtectedRoute = ({ children }) => {
-  const { user } = useAuth(); // Uses context to check if user is authenticated
-  return user ? children : <Navigate to="/signin" />;
+  const { user } = useAuth();
+  return user ? children : <Navigate to="/signin" replace />;
 };
 
 function App() {
@@ -29,7 +29,6 @@ function App() {
                 <BrowseBooks />
               </ProtectedRoute>
             } />
-            {/* Add more routes as needed */}
           </Routes>
           <Footer />
         </div>
