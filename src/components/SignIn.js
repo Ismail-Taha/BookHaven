@@ -1,15 +1,12 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AuthContext } from './AuthContext'; // Ensure you have created this context
+import { useAuth } from '../AuthContext'; // Corrected to useAuth
 import '../styles/SignIn.css';
 
 const SignIn = () => {
-    const [formData, setFormData] = useState({
-        username: '',
-        password: ''
-    });
+    const { login } = useAuth();
+    const [formData, setFormData] = useState({ username: '', password: '' });
     const [errors, setErrors] = useState({});
-    const { login } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const validateForm = () => {
@@ -20,26 +17,17 @@ const SignIn = () => {
         return Object.values(tempErrors).every(x => x === "");
     };
 
-    const handleSubmit = async (event) => {
+    const handleSubmit = (event) => {
         event.preventDefault();
         if (validateForm()) {
-            try {
-                // Simulate API call
-                login({ username: formData.username }); // Update the login logic as per your API
-                navigate('/'); // Redirect to home on successful login
-            } catch (error) {
-                console.error('Login error:', error);
-                setErrors(prevErrors => ({ ...prevErrors, form: 'Failed to log in.' }));
-            }
+            login({ username: formData.username });
+            navigate('/');
         }
     };
 
     const handleChange = (event) => {
         const { name, value } = event.target;
-        setFormData(prevFormData => ({
-            ...prevFormData,
-            [name]: value
-        }));
+        setFormData(prevFormData => ({ ...prevFormData, [name]: value }));
     };
 
     return (
@@ -53,7 +41,6 @@ const SignIn = () => {
                     <input type="password" name="password" placeholder="Password" value={formData.password} onChange={handleChange} />
                     {errors.password && <p className="error">{errors.password}</p>}
                     <button type="submit">Login</button>
-                    {errors.form && <p className="error">{errors.form}</p>}
                 </form>
             </div>
         </div>

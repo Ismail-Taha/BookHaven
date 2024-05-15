@@ -1,35 +1,36 @@
-/* Base styles for the landing container */
+/* LandingPage.css */
 .landing-container {
-    height: 100vh;
-    width: 100vw;
-    background-image: url('../assets/bookhav.jpg');
+    height: 100vh; /* Ensures the container fits exactly the height of the viewport */
+    width: 100vw; /* Ensures the container fits exactly the width of the viewport */
+    background-image: url('../assets/bookhav.jpg'); /* Adjust the path as needed */
     background-size: cover;
     background-position: center;
+    background-repeat: no-repeat; /* Ensures the background image does not repeat */
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* Align content to the top */
-    align-items: flex-start; /* Align content to the left */
+    justify-content: flex-start;
+    align-items: flex-start;
     color: white;
     text-align: left;
     font-family: 'Arial', sans-serif;
-    padding: 20px; /* Add some padding for spacing */
+    padding: 20px;
+    box-sizing: border-box; /* Includes padding in the width and height calculations */
+    overflow-x: hidden; /* Prevents horizontal overflow explicitly */
+    margin: 0; /* Resets any default margin */
 }
 
-/* Style for the welcome message */
 .welcome-message {
     font-size: 24px;
-    margin-top: 20px; /* Add spacing from the top */
+    margin-top: 20px; /* Adjust spacing from the top */
 }
 
-/* Style for the h1 (Welcome to Book Haven) */
 .welcome-message h1 {
     font-size: 36px;
     font-weight: bold;
-    margin-bottom: 10px; /* Add spacing below the heading */
+    margin-bottom: 10px; /* Adds spacing below the heading */
 }
 
-/* Style for the p (description) */
 .welcome-message p {
     font-size: 20px;
-    line-height: 1.5; /* Improve readability with proper line height */
+    line-height: 1.5; /* Enhances readability with appropriate line height */
 }

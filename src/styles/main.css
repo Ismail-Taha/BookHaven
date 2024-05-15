@@ -1,54 +1,62 @@
-.app-background {
-    background-image: url('../assets/bookhav.jpg');
-    background-size: cover;
-    background-position: center;
-}
-
-html,
-body {
+/* Reset margin, padding, and box-sizing across all elements to ensure consistency */
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
-    overflow-x: hidden;
+    box-sizing: border-box;
+}
+
+html, body {
     width: 100%;
+    height: 100%;
+    overflow-x: hidden; /* Hide horizontal overflow at the root level */
+    font-family: 'Arial', sans-serif; /* Standardize font across the app */
+    background: #f0f0f0; /* Light grey background, can be changed as needed */
+    color: #333; /* Dark grey text color for better readability */
 }
 
-:root {
-    --primary-color: #007bff;
-    --secondary-color: #6c757d;
-    --font-family: 'Arial', sans-serif;
+/* Ensures images and embedded content do not cause overflow */
+img, iframe, video, canvas {
+    max-width: 100%;
+    height: auto;
 }
 
-body, input, button {
-    font-family: var(--font-family);
+/* Universal link styling */
+a {
+    text-decoration: none;
+    color: inherit; /* Links use the text color inherited from their parent */
 }
 
+/* Main container style to centrally align content and ensure padding does not cause overflow */
 .container {
-    max-width: 1200px;
-    margin: 0 auto;
+    width: 100%;
+    max-width: 1200px; /* Maximum width of the central content */
+    margin: 0 auto; /* Center align the container */
     padding: 20px;
+    overflow: hidden; /* Additional precaution against horizontal overflow */
 }
 
+/* Styling for headers to ensure they fit within their containers */
+h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word; /* Ensures text breaks to prevent overflow */
+}
+
+/* Responsive adjustments for smaller screens */
 @media (max-width: 768px) {
     .container {
-        padding: 10px;
+        padding: 10px; /* Smaller padding on smaller screens */
+    }
+    h1 {
+        font-size: 24px; /* Smaller font size for main headers on smaller screens */
     }
 }
 
-.button {
-    background-color: var(--primary-color);
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
+/* Utility classes for common spacing and layout adjustments */
+.p-20 {
+    padding: 20px;
 }
 
-.button:hover {
-    background-color: darken(var(--primary-color), 10%);
-}
-
-.input {
-    border: 2px solid var(--secondary-color);
-    border-radius: 5px;
-    padding: 10px;
+.mt-20 {
+    margin-top: 20px;
 }

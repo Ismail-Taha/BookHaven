@@ -1,9 +1,10 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AuthContext } from './AuthContext'; // Ensure this context is created
+import { useAuth } from '../AuthContext'; // Corrected to useAuth
 import '../styles/SignUp.css';
 
 const SignUp = () => {
+    const { login } = useAuth();
     const [formData, setFormData] = useState({
         username: '',
         email: '',
@@ -11,7 +12,6 @@ const SignUp = () => {
         confirmPassword: ''
     });
     const [errors, setErrors] = useState({});
-    const { login } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const validateForm = () => {
@@ -24,26 +24,17 @@ const SignUp = () => {
         return Object.values(tempErrors).every(x => x === "");
     };
 
-    const handleSubmit = async (event) => {
+    const handleSubmit = (event) => {
         event.preventDefault();
         if (validateForm()) {
-            try {
-                // Simulate API call
-                login({ username: formData.username }); // Update as per your API
-                navigate('/'); // Navigate to home on successful signup
-            } catch (error) {
-                console.error('Signup error:', error);
-                setErrors(prevErrors => ({ ...prevErrors, form: 'Failed to sign up.' }));
-            }
+            login({ username: formData.username });
+            navigate('/');
         }
     };
 
     const handleChange = (event) => {
         const { name, value } = event.target;
-        setFormData(prevFormData => ({
-            ...prevFormData,
-            [name]: value
-        }));
+        setFormData(prevFormData => ({ ...prevFormData, [name]: value }));
     };
 
     return (
@@ -61,7 +52,6 @@ const SignUp = () => {
                     <input type="password" name="confirmPassword" placeholder="Confirm Password" value={formData.confirmPassword} onChange={handleChange} />
                     {errors.confirmPassword && <p className="error">{errors.confirmPassword}</p>}
                     <button type="submit">Sign Up</button>
-                    {errors.form && <p className="error">{errors.form}</p>}
                 </form>
             </div>
         </div>
