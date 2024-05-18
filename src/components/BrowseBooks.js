@@ -1,10 +1,10 @@
+// src/components/BrowseBooks.js
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '../AuthContext';
 import '../styles/BrowseBooks.css';
 
-
 const BrowseBooks = () => {
-    const { user } = useAuth(); // Corrected to useAuth
+    const { user } = useAuth();
     const [books, setBooks] = useState([]);
 
     useEffect(() => {
@@ -33,16 +33,16 @@ const BrowseBooks = () => {
     };
 
     return (
-        <div>
+        <div className="browse-books-container">
             <h1>Browse Books</h1>
-            {user && <button onClick={() => handleAddBook({ title: "New Book", author: "Author Name" })}>Add Book</button>}
-            <div>
+            {user && <button className="add-book-btn" onClick={() => handleAddBook({ title: "New Book", author: "Author Name" })}>Add Book</button>}
+            <div className="books-grid">
                 {books.map(book => (
-                    <div key={book.id}>
-                        <img src={book.cover} alt={book.title} />
-                        <h3>{book.title}</h3>
-                        <p>{book.author}</p>
-                        {user && <button onClick={() => handleDeleteBook(book.id)}>Delete</button>}
+                    <div className="book-card" key={book.id}>
+                        <img src={book.cover} alt={book.title} className="book-cover" />
+                        <h3 className="book-title">{book.title}</h3>
+                        <p className="book-author">{book.author}</p>
+                        {user && <button className="delete-book-btn" onClick={() => handleDeleteBook(book.id)}>Delete</button>}
                     </div>
                 ))}
             </div>
