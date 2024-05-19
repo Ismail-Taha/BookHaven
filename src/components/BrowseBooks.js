@@ -23,7 +23,7 @@ const BrowseBooks = () => {
 
         const fetchPdfBooks = async () => {
             try {
-                const response = await fetch('http://localhost:3000/pdfs');
+                const response = await fetch('http://localhost:3000/list-pdfs');
                 if (!response.ok) throw new Error('Failed to fetch PDF books');
                 const pdfFiles = await response.json();
                 setPdfBooks(pdfFiles);
@@ -126,7 +126,7 @@ const BrowseBooks = () => {
             <div className="horizontal-scroll">
                 {pdfBooks.map((pdf, index) => (
                     <div className="pdf-book-card" key={index}>
-                        <a href={`/pdfs/${pdf}`} target="_blank" rel="noopener noreferrer">
+                        <a href={`http://localhost:3000/pdfs/${pdf}`} target="_blank" rel="noopener noreferrer">
                             <div className="pdf-thumbnail">{pdf}</div>
                         </a>
                     </div>

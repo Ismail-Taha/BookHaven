@@ -38,6 +38,16 @@ server.use('/uploads', jsonServer.static(path.join(__dirname, 'uploads')));
 // Serve PDF files
 server.use('/pdfs', jsonServer.static(path.join(__dirname, '../pdfs')));
 
+// Endpoint to list PDF files
+server.get('/list-pdfs', (req, res) => {
+  fs.readdir(path.join(__dirname, '../pdfs'), (err, files) => {
+    if (err) {
+      return res.status(500).json({ error: 'Failed to list PDF files' });
+    }
+    res.json(files);
+  });
+});
+
 // Ensure correct Content-Type for JSON responses
 server.use((req, res, next) => {
   res.setHeader('Content-Type', 'application/json');
