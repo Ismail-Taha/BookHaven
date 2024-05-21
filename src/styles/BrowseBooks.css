@@ -1,68 +1,73 @@
-/* styles/BrowseBooks.css */
-
 .browse-books-container {
-    padding: 20px;
-    color: #333;
-    background-image: url('../assets/browsbooks.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    height: min-content;
-  }
+  display: flex;
+  flex-direction: column;
+  background: url('../assets/browsbooks.jpg') no-repeat center center fixed;
+  background-size: cover;
+  padding: 20px;
+}
 
-  .browse-books-container h1, .browse-books-container h2 {
-    text-align: center;
-    color: #070707;
-  }
+.dashboard {
+  width: 200px;
+  margin-right: 20px;
+  padding: 20px;
+  background-color: rgba(128, 162, 226, 0.8);
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px; /* Adjusted for space below the dashboard */
+}
 
-  .pdf-books-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-    align-items: flex-start;
-  }
+.header-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
 
-  .pdf-book-card {
-    background-color: rgba(255, 255, 255, 0.8);
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    text-align: center;
-  }
+.pdf-books-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  flex: 1;
+}
 
-  .pdf-book-card embed {
-    width: 100px;
-    height: 150px;
-    object-fit: cover;
-    margin-bottom: 10px;
-  }
+.pdf-book-card {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
 
-  .pdf-preview {
-    margin-top: 20px;
-    text-align: center;
-  }
+.upload-form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 0; /* Adjusted to align at the top */
+  margin-left: 20px; /* Adjusted to add some space from the left */
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
 
-  form {
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+.upload-form input,
+.upload-form button {
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
 
-  form input[type="file"] {
-    margin-bottom: 10px;
-  }
+.upload-form button {
+  background-color: #4CAF50;
+  color: white;
+  cursor: pointer;
+}
 
-  form button {
-    padding: 10px 20px;
-    background-color: #10115a;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
+.upload-form button:hover {
+  background-color: #45a049;
+}
 
-  form button:hover {
-    opacity: 0.8;
-  }
+.pdf-preview {
+  margin-top: 20px;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}

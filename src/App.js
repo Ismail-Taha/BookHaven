@@ -1,4 +1,3 @@
-// App.js
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './AuthContext';
@@ -10,7 +9,6 @@ import Footer from './components/Footer';
 import BrowseBooks from './components/BrowseBooks';
 import AboutMe from './components/Aboutme';
 
-// Protected Route Component
 const ProtectedRoute = ({ children }) => {
   const { user } = useAuth();
   return user ? children : <Navigate to="/signin" replace />;

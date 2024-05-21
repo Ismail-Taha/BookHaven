@@ -47,7 +47,7 @@
     },
     {
       "id": 4,
-      "title": "ALX-Software-Engeneering",
+      "title": "ALX-Software-Engineering",
       "filePath": "ALX-Software-Engineering-Curriculum.pdf"
     },
     {
@@ -69,6 +69,26 @@
       "id": 8,
       "title": "Ugly Love",
       "filePath": "Ugly Love.pdf"
+    },
+    {
+      "id": 1716465613219,
+      "title": "Software Eng.. ",
+      "filePath": "software engineering.pdf"
+    },
+    {
+      "id": 1716465766723,
+      "title": "Software Eng.. ",
+      "filePath": "software engineering.pdf"
+    },
+    {
+      "id": 1716465783687,
+      "title": "Software Eng.. ",
+      "filePath": "software engineering.pdf"
+    },
+    {
+      "id": 1716494092383,
+      "title": "data struct",
+      "filePath": "Data Structur in c.pdf"
     }
   ],
   "reviews": [
