@@ -23,7 +23,7 @@ const BrowseBooks = () => {
         body: formData
       });
       const data = await res.json();
-      setBooks([...books, data.filePath]);
+      setBooks([...books, data]);
       setPreview(data.filePath);
     } catch (err) {
       console.error('Error uploading file', err);
@@ -44,13 +44,13 @@ const BrowseBooks = () => {
   }, []);
 
   return (
-    <div className="browse-books-container" style={{ backgroundImage: "url('../assets/browsbooks.jpg')" }}>
+    <div className="browse-books-container">
       <h1>Browse Books</h1>
       <h2>PDF Books</h2>
       <div className="pdf-books-grid">
-        {books.map((book, index) => (
-          <div key={index} className="pdf-book-card">
-            <embed src={book.filePath} width="100%" height="200px" />
+        {books.map((book) => (
+          <div key={book.id} className="pdf-book-card">
+            <iframe src={`/pdfs/${book.filePath}`} frameBorder="0" width="100%" height="500px"></iframe>
             <p>{book.title}</p>
           </div>
         ))}
@@ -62,7 +62,7 @@ const BrowseBooks = () => {
       {preview && (
         <div className="pdf-preview">
           <h3>Preview:</h3>
-          <embed src={preview} width="100%" height="500px" />
+          <iframe id="myPDF" src={`/pdfs/${preview}`} frameBorder="0" width="100%" height="500px"></iframe>
         </div>
       )}
     </div>

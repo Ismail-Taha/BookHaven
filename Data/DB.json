@@ -32,23 +32,23 @@
   "pdfBooks": [
     {
       "id": 1,
-      "title": "ALX-Software-Engineering-Curriculum",
-      "filePath": "/pdfs/ALX-Software-Engineering-Curriculum.pdf"
+      "title": "Algorithm",
+      "filePath": "Algorithm.pdf"
     },
     {
       "id": 2,
-      "title": "Algorithm",
-      "filePath": "/pdfs/Algorithm.pdf"
+      "title": "Assembly Lines Complete Wagner",
+      "filePath": "AssemblyLinesCompleteWagner.pdf"
     },
     {
       "id": 3,
-      "title": "AssemblyLinesCompleteWagner",
-      "filePath": "/pdfs/AssemblyLinesCompleteWagner.pdf"
+      "title": "C Programming",
+      "filePath": "C programming.pdf"
     },
     {
       "id": 4,
-      "title": "C Programming",
-      "filePath": "/pdfs/C programming.pdf"
+      "title": "ALX-Software-Engeneering",
+      "filePath": "ALX-Software-Engineering-Curriculum.pdf"
     }
   ],
   "reviews": [
