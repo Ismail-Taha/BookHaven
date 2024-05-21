@@ -1,4 +1,4 @@
-//App.js
+// App.js
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './AuthContext';
@@ -8,6 +8,7 @@ import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
 import Footer from './components/Footer';
 import BrowseBooks from './components/BrowseBooks';
+import AboutMe from './components/Aboutme';
 
 // Protected Route Component
 const ProtectedRoute = ({ children }) => {
@@ -30,6 +31,7 @@ function App() {
                 <BrowseBooks />
               </ProtectedRoute>
             } />
+            <Route path="/aboutme" element={<AboutMe />} />
           </Routes>
           <Footer />
         </div>

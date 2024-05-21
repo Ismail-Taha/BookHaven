@@ -1,60 +1,33 @@
-const jsonServer = require('json-server');
-const bcrypt = require('bcryptjs');
+// server.js
+const express = require('express');
 const multer = require('multer');
 const path = require('path');
-const fs = require('fs');
 
-const server = jsonServer.create();
-const router = jsonServer.router('../Data/DB.json');
-const middlewares = jsonServer.defaults();
+const app = express();
+const PORT = 5000;
 
-const upload = multer({ dest: 'uploads/' });
-
-server.use(middlewares);
-server.use(jsonServer.bodyParser); // Ensures the server can handle POST requests body data
-
-// Middleware to hash passwords on POST to /users endpoint
-server.use((req, res, next) => {
-  if (req.method === 'POST' && req.path === '/users') {
-    if (req.body.password) {
-      req.body.password = bcrypt.hashSync(req.body.password, 10); // Hash the password before saving
-    }
+// Set up storage for Multer
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'pdfs/');
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + path.extname(file.originalname));
   }
-  next(); // Pass the request to the next middleware or json-server itself
 });
 
-// Endpoint to handle file uploads
-server.post('/upload', upload.single('file'), (req, res) => {
+const upload = multer({ storage });
+
+app.use(express.static('public'));
+app.use(express.json());
+
+app.post('/api/upload', upload.single('file'), (req, res) => {
   if (!req.file) {
-    return res.status(400).send({ error: 'No file uploaded' });
+    return res.status(400).send('No file uploaded.');
   }
-  const fileUrl = `http://localhost:3000/uploads/${req.file.filename}`;
-  res.send({ url: fileUrl });
+  res.json({ filePath: `/pdfs/${req.file.filename}` });
 });
 
-// Serve uploaded files
-server.use('/uploads', jsonServer.static(path.join(__dirname, 'uploads')));
-
-// Serve PDF files
-server.use('/pdfs', jsonServer.static(path.join(__dirname, '../pdfs')));
-
-// Endpoint to list PDF files
-server.get('/list-pdfs', (req, res) => {
-  fs.readdir(path.join(__dirname, '../pdfs'), (err, files) => {
-    if (err) {
-      return res.status(500).json({ error: 'Failed to list PDF files' });
-    }
-    res.json(files);
-  });
-});
-
-// Ensure correct Content-Type for JSON responses
-server.use((req, res, next) => {
-  res.setHeader('Content-Type', 'application/json');
-  next();
-});
-
-server.use(router); // Use the default router
-server.listen(3000, () => {
-  console.log('Server is running on http://localhost:3000');
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
 });

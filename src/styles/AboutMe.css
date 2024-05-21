@@ -1,0 +1,34 @@
+/* styles/AboutMe.css */
+.about-me-container {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #6cafc8;
+    max-width: 800px;
+    margin: auto;
+    background-image: url('../assets/aboutme.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: #315e86; /* Adjust text color for better contrast */
+  }
+
+  .about-me-container h1,
+  .about-me-container h2 {
+    color: #333;
+  }
+
+  .about-me-container p {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .about-me-container ul {
+    list-style-type: disc;
+    padding-left: 20px;
+  }
+
+  .about-me-container ul li {
+    margin-bottom: 10px;
+  }

@@ -1,6 +1,6 @@
-//components/NavBar.js
+// components/NavBar.js
 import React from 'react';
-import { NavLink } from 'react-router-dom';  // Use NavLink for navigation
+import { NavLink } from 'react-router-dom';
 import '../styles/NavBar.css';
 import logo from '../assets/logoBH.png';
 
@@ -11,6 +11,7 @@ const NavBar = () => {
       <ul className="nav-links">
         <li><NavLink to="/">Home</NavLink></li>
         <li><NavLink to="/books">Browse Books</NavLink></li>
+        <li><NavLink to="/aboutme">About Me</NavLink></li>
         <li><NavLink to="/signin">Sign In</NavLink></li>
         <li><NavLink to="/signup">Sign Up</NavLink></li>
       </ul>

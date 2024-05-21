@@ -1,100 +1,67 @@
+/* styles/BrowseBooks.css */
+
 .browse-books-container {
     padding: 20px;
-}
+    color: #333;
+    background-image: url('../assets/browsbooks.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    min-height: 100vh;
+  }
 
-.books-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 20px;
-}
-
-.book-card {
-    border: 1px solid #ddd;
-    padding: 10px;
+  .browse-books-container h1, .browse-books-container h2 {
     text-align: center;
-}
+    color: #070707;
+  }
 
-.book-cover {
-    width: 100%;
-    height: auto;
-}
-
-.book-title {
-    font-size: 1.2em;
-    margin: 10px 0;
-}
-
-.book-author {
-    color: #555;
-}
-
-.delete-book-btn {
-    background-color: red;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-    margin-top: 10px;
-}
-
-.horizontal-scroll {
+  .pdf-books-grid {
     display: flex;
-    overflow-x: auto;
-    padding: 10px 0;
+    flex-wrap: wrap;
     gap: 20px;
-}
-
-.pdf-book-card {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: center;
-    flex: 0 0 auto;
-    width: 150px;
-}
-
-.pdf-thumbnail {
-    width: 100%;
-    height: auto;
-    background-color: #f1f1f1;
-    display: flex;
-    align-items: center;
     justify-content: center;
-    height: 200px;
-}
+  }
 
-.add-book-btn {
-    background-color: green;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
+  .pdf-book-card {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+  }
+
+  .pdf-book-card embed {
+    width: 100px;
+    height: 150px;
+    object-fit: cover;
+    margin-bottom: 10px;
+  }
+
+  .pdf-preview {
     margin-top: 20px;
-}
+    text-align: center;
+  }
 
-.modal {
+  form {
+    margin-top: 20px;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-}
+  }
 
-.modal-content {
-    background: white;
-    padding: 20px;
-    border-radius: 5px;
-    max-width: 500px;
-    width: 100%;
-}
+  form input[type="file"] {
+    margin-bottom: 10px;
+  }
 
-.close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
+  form button {
+    padding: 10px 20px;
+    background-color: #10115a;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
     cursor: pointer;
-    font-size: 1.5em;
-}
+  }
+
+  form button:hover {
+    opacity: 0.8;
+  }
