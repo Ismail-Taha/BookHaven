@@ -49,6 +49,26 @@
       "id": 4,
       "title": "ALX-Software-Engeneering",
       "filePath": "ALX-Software-Engineering-Curriculum.pdf"
+    },
+    {
+      "id": 5,
+      "title": "It ends with us",
+      "filePath": "It ends with us.pdf"
+    },
+    {
+      "id": 6,
+      "title": "The Linux Programming Interface",
+      "filePath": "The Linux Programming Interface.pdf"
+    },
+    {
+      "id": 7,
+      "title": "Reason TO Stay Alive",
+      "filePath": "Reason TO Stay Alive.pdf"
+    },
+    {
+      "id": 8,
+      "title": "Ugly Love",
+      "filePath": "Ugly Love.pdf"
     }
   ],
   "reviews": [

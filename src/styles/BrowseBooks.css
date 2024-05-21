@@ -7,7 +7,7 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    min-height: 100vh;
+    height: min-content;
   }
 
   .browse-books-container h1, .browse-books-container h2 {
