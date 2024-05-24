@@ -43,3 +43,8 @@ To get started with BookHaven, follow these steps:
    git clone https://github.com/Ismail-Taha/BookHaven.git
    cd BookHaven
 
+   Locally test run :
+
+         Terminal-1: json-server --watch Data/DB.json --port 3001 'your local port here '
+         Terminal-2: node server/uploadServer.js
+         Terminal-3: npm run start
